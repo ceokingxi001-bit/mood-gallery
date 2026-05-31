@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes">
+    
+    <!-- Performance: Preconnect to external domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://images.pexels.com">
+    <link rel="dns-prefetch" href="https://images.pexels.com">
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Browse beautiful focused work and office photos. Discover concentration and productivity images.">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Focused Photos - Beautiful Work & Office Images | Mood Gallery">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <title>Focused Photos - Beautiful Work & Office Images | Free Stock Photos</title>
+    <link rel="canonical" href="https://yourdomain.com/focused.html">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎯</text></svg>">
+</head>
+<body data-mood="focused">
+    <main>
+        <section id="gallery" class="gallery-section">
+            <div class="loading-overlay" id="loadingOverlay"><div class="loader"></div><p>Loading focused photos...</p></div>
+            <div class="fullscreen-carousel" id="fullscreenCarousel">
+                <div class="carousel-wrapper"><div class="carousel-inner" id="carouselInner"></div></div>
+                <button class="carousel-nav carousel-nav-left" id="prevBtn">&lt;</button>
+                <button class="carousel-nav carousel-nav-right" id="nextBtn">&gt;</button>
+                <div class="carousel-header">
+                    <div class="header-left">
+                        <div class="mood-indicator"><span class="current-mood-icon">🎯</span><span class="current-mood-name">Focused</span></div>
+                        <div class="music-control" id="musicControl">
+                            <button class="music-btn" id="musicBtn">♪</button>
+                            <input type="range" id="volumeSlider" min="0" max="100" value="50">
+                        </div>
+                    </div>
+                    <div class="slide-counter"><span id="currentSlide">1</span> / <span id="totalSlides">8</span></div>
+                    <div class="header-actions">
+                        <button class="download-btn" id="downloadBtn" title="Download Image">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                        </button>
+                        <button class="refresh-btn" id="refreshBtn">New Batch</button>
+                        <a href="index.html" class="back-btn">Home</a>
+                    </div>
+                </div>
+                <div class="thumbnail-dots" id="thumbnailDots"></div>
+                <div class="thumbnail-bar" id="thumbnailBar"></div>
+            </div>
+            <audio id="bgAudio" preload="auto"><source src="" type="audio/mpeg"></audio>
+        </section>
+    </main>
+    
+    <!-- Page Content for SEO -->
+    <section class="content-section">
+        <div class="content-wrapper">
+            <h2>Beautiful Focused Photos for Productivity</h2>
+            <p>Discover beautiful focused mood aesthetic images to boost your concentration and productivity. These inspiring work and office photos help you stay motivated and achieve your goals. Browse high-quality focused emotion wallpapers that create a mindset of determination and clarity. These concentration images are perfect for study spaces or work desks. Stay focused, stay productive with these free stock photos designed to inspire.</p>
+        </div>
+    </main>
+    
+    <footer class="footer"><p>Photos provided by <a href="https://www.pexels.com" target="_blank" rel="noopener">Pexels</a></p></footer>
+    <script>
+        window.moodConfig = { query: 'work office', per_page: 2, hasMusic: true };
+        window.localMusicPlaylist = [
+            '专注/Paper Lantern Drift.mp3',
+            '专注/Quiet Grid.mp3',
+            '专注/Study In Blue.mp3'
+        ];
+    </script>
+    <script src="gallery.js"></script>
+</body>
+</html>

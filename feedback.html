@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes">
+    <title>Feedback - Mood Gallery</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .feedback-page {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .feedback-container {
+            background: white;
+            border-radius: 24px;
+            padding: 2.5rem;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+        }
+
+        .feedback-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .feedback-header h1 {
+            font-size: 1.75rem;
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+        }
+
+        .feedback-header p {
+            color: #718096;
+            font-size: 0.95rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #4a5568;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .rating-group {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+        }
+
+        .rating-btn {
+            width: 40px;
+            height: 40px;
+            border: 2px solid #e2e8f0;
+            border-radius: 50%;
+            background: white;
+            cursor: pointer;
+            font-size: 1.25rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .rating-btn:hover {
+            border-color: #667eea;
+            background: #f7fafc;
+        }
+
+        .rating-btn.active {
+            border-color: #667eea;
+            background: #667eea;
+        }
+
+        .rating-label {
+            text-align: center;
+            margin-top: 0.5rem;
+            font-size: 0.85rem;
+            color: #718096;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .submit-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        .success-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .success-message h2 {
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+        }
+
+        .success-message p {
+            color: #718096;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 480px) {
+            .feedback-container {
+                padding: 1.5rem;
+            }
+
+            .feedback-header h1 {
+                font-size: 1.5rem;
+            }
+
+            .rating-btn {
+                width: 36px;
+                height: 36px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="feedback-page">
+        <div class="feedback-container">
+            <div id="feedbackForm">
+                <div class="feedback-header">
+                    <h1>Feedback & Suggestions</h1>
+                    <p>Help us improve Mood Gallery</p>
+                </div>
+
+                <form id="feedbackFormElement">
+                    <div class="form-group">
+                        <label for="feedbackType">Type</label>
+                        <select id="feedbackType" required>
+                            <option value="">Select type...</option>
+                            <option value="suggestion">Suggestion</option>
+                            <option value="bug">Bug Report</option>
+                            <option value="feature">Feature Request</option>
+                            <option value="compliment">Compliment</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email (optional)</label>
+                        <input type="email" id="email" placeholder="your@email.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label>How's your experience?</label>
+                        <div class="rating-group">
+                            <button type="button" class="rating-btn" data-rating="1">😞</button>
+                            <button type="button" class="rating-btn" data-rating="2">😐</button>
+                            <button type="button" class="rating-btn" data-rating="3">🙂</button>
+                            <button type="button" class="rating-btn" data-rating="4">😊</button>
+                            <button type="button" class="rating-btn" data-rating="5">🤩</button>
+                        </div>
+                        <p class="rating-label" id="ratingLabel">Click to rate</p>
+                        <input type="hidden" id="rating" name="rating" value="">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Your message</label>
+                        <textarea id="message" placeholder="Tell us what you think..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn" id="submitBtn">
+                        Send Feedback
+                    </button>
+                </form>
+
+                <div style="text-align: center;">
+                    <a href="index.html" class="back-link">← Back to Mood Gallery</a>
+                </div>
+            </div>
+
+            <div class="success-message" id="successMessage">
+                <div class="success-icon">🎉</div>
+                <h2>Thank you!</h2>
+                <p>Your feedback has been received.</p>
+                <p style="margin-top: 1rem; font-size: 0.9rem;">We appreciate your help in improving Mood Gallery.</p>
+                <a href="index.html" class="back-link">← Back to Mood Gallery</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Rating buttons
+        const ratingBtns = document.querySelectorAll('.rating-btn');
+        const ratingInput = document.getElementById('rating');
+        const ratingLabel = document.getElementById('ratingLabel');
+        const ratingLabels = ['', 'Very Bad', 'Bad', 'Okay', 'Good', 'Excellent'];
+
+        ratingBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                ratingBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                ratingInput.value = btn.dataset.rating;
+                ratingLabel.textContent = ratingLabels[btn.dataset.rating];
+            });
+        });
+
+        // Form submission
+        document.getElementById('feedbackFormElement').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const feedbackType = document.getElementById('feedbackType').value;
+            const email = document.getElementById('email').value;
+            const rating = ratingInput.value;
+            const message = document.getElementById('message').value;
+
+            // Show loading
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sending...';
+
+            try {
+                // Send to backend API
+                const response = await fetch('http://localhost:3001/api/feedback', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        type: feedbackType,
+                        email: email,
+                        rating: rating,
+                        message: message
+                    })
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    // Show success
+                    document.getElementById('feedbackForm').style.display = 'none';
+                    document.getElementById('successMessage').classList.add('show');
+                } else {
+                    throw new Error(result.error || 'Failed to submit');
+                }
+
+            } catch (error) {
+                console.error('Submit error:', error);
+                alert('Failed to submit feedback. Please try again.');
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Send Feedback';
+            }
+        });
+    </script>
+</body>
+</html>

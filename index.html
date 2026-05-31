@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes">
+    
+    <!-- Performance: Preconnect to external domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://images.pexels.com">
+    
+    <!-- Performance: DNS Prefetch for faster DNS resolution -->
+    <link rel="dns-prefetch" href="https://images.pexels.com">
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Mood Gallery - Discover beautiful images that match your emotions. Browse curated photo collections for Happy, Peaceful, Healing, Focused, Relaxed, Hopeful, Amazed, Empty, and Romantic moods.">
+    <meta name="keywords" content="mood gallery, emotional photos, beautiful images, happy photos, peaceful nature, healing pictures, relaxing images, romantic photos, free stock photos">
+    <meta name="author" content="Mood Gallery">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Mood Gallery - Find Images That Match Your Emotions">
+    <meta property="og:description" content="Discover beautiful curated images for every mood. Browse photo collections for happy, peaceful, healing, and more emotions.">
+    <meta property="og:image" content="https://images.pexels.com/photos/1024960/pexels-photo-1024960.jpeg?auto=compress&cs=tinysrgb&w=1200">
+    <meta property="og:url" content="https://yourdomain.com/">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Mood Gallery - Find Images That Match Your Emotions">
+    <meta name="twitter:description" content="Discover beautiful curated images for every mood.">
+    
+    <title>Mood Gallery - Beautiful Images for Every Emotion | Free Stock Photos</title>
+    
+    <link rel="canonical" href="https://yourdomain.com/">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎨</text></svg>">
+    
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Mood Gallery",
+        "description": "Discover beautiful images that match your emotions",
+        "url": "https://yourdomain.com/",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://yourdomain.com/{mood}",
+            "query-input": "required name=mood"
+        }
+    }
+    </script>
+</head>
+<body>
+    <div class="page-transition"></div>
+    
+    <!-- Main Content -->
+    <main class="home-section">
+        <div class="hero">
+            <div class="hero-bg"></div>
+            <div class="hero-content">
+                <h1 class="title">
+                    <span class="title-main">Mood Gallery</span>
+                </h1>
+                <div class="scroll-indicator">
+                    <span>Choose your mood below</span>
+                    <div class="scroll-arrow"></div>
+                </div>
+                <p class="subtitle">Find beautiful images that match your emotions</p>
+            </div>
+        </div>
+        
+        <section class="mood-grid" aria-labelledby="mood-section-title">
+            <h2 id="mood-section-title" class="section-title">Explore Images by Mood</h2>
+            <p class="section-description">Click on any mood below to discover beautiful curated photos that match your current feeling</p>
+            
+            <nav class="mood-buttons" aria-label="Mood categories">
+                <a href="happy.html" class="mood-btn" data-mood="happy">
+                    <span class="mood-icon">😊</span>
+                    <span class="mood-name">Happy</span>
+                    <span class="mood-desc">Joyful celebration moments</span>
+                    <span class="free-badge">Free</span>
+                </a>
+                <a href="peaceful.html" class="mood-btn" data-mood="peaceful">
+                    <span class="mood-icon">😌</span>
+                    <span class="mood-name">Peaceful</span>
+                    <span class="mood-desc">Calm mountain landscapes</span>
+                    <span class="free-badge">Free</span>
+                </a>
+                <a href="hopeful.html" class="mood-btn locked" data-mood="hopeful">
+                    <span class="mood-icon">🌅</span>
+                    <span class="mood-name">Hopeful</span>
+                    <span class="mood-desc">Sunrise and new beginnings</span>
+                    <span class="premium-badge">Premium $1.99</span>
+                </a>
+                <a href="relaxed.html" class="mood-btn" data-mood="relaxed">
+                    <span class="mood-icon">🧘</span>
+                    <span class="mood-name">Relaxed</span>
+                    <span class="mood-desc">Ocean waves and serenity</span>
+                    <span class="free-badge">Free</span>
+                </a>
+                <a href="romantic.html" class="mood-btn" data-mood="romantic">
+                    <span class="mood-icon">💕</span>
+                    <span class="mood-name">Romantic</span>
+                    <span class="mood-desc">Love and romance</span>
+                    <span class="free-badge">Free</span>
+                </a>
+                <a href="healing.html" class="mood-btn locked" data-mood="healing">
+                    <span class="mood-icon">🌿</span>
+                    <span class="mood-name">Healing</span>
+                    <span class="mood-desc">Nature's restorative beauty</span>
+                    <span class="premium-badge">Premium $1.99</span>
+                </a>
+                <a href="focused.html" class="mood-btn locked" data-mood="focused">
+                    <span class="mood-icon">🎯</span>
+                    <span class="mood-name">Focused</span>
+                    <span class="mood-desc">Concentration and productivity</span>
+                    <span class="premium-badge">Premium $1.99</span>
+                </a>
+                <a href="amazed.html" class="mood-btn locked" data-mood="amazed">
+                    <span class="mood-icon">✨</span>
+                    <span class="mood-name">Amazed</span>
+                    <span class="mood-desc">Stunning cosmic views</span>
+                    <span class="premium-badge">Premium $1.99</span>
+                </a>
+                <a href="empty.html" class="mood-btn locked" data-mood="empty">
+                    <span class="mood-icon">☁️</span>
+                    <span class="mood-name">Empty</span>
+                    <span class="mood-desc">Clear blue skies</span>
+                    <span class="premium-badge">Premium $1.99</span>
+                </a>
+                <a href="sleepy.html" class="mood-btn locked" data-mood="sleepy">
+                    <span class="mood-icon">😴</span>
+                    <span class="mood-name">Sleepy</span>
+                    <span class="mood-desc">Peaceful sleep time</span>
+                    <span class="premium-badge">Premium $1.99</span>
+                </a>
+                <a href="feedback.html" class="mood-btn feedback-btn" data-mood="feedback">
+                    <span class="mood-icon">💬</span>
+                    <span class="mood-name">Feedback</span>
+                    <span class="mood-desc">Share your thoughts</span>
+                </a>
+            </nav>
+        </section>
+    </main>
+    
+    <!-- Mood Gallery Content -->
+    <section class="content-section">
+        <div class="content-wrapper">
+            <h2>Find Images That Match Your Emotions</h2>
+            <p>Discover beautiful mood aesthetic images to express how you feel. Browse curated photo collections for happy, peaceful, healing, focused, relaxed, hopeful, amazed, empty, and romantic emotions. Each gallery features high-quality visual mood boards to help you connect with your feelings through stunning photography. Find the perfect emotion wallpapers for your daily inspiration and emotional well-being.</p>
+        </div>
+    </section>
+    
+    <footer class="footer">
+        <div class="footer-content">
+            <p>Beautiful images provided by <a href="https://www.pexels.com" target="_blank" rel="noopener">Pexels</a></p>
+            <nav class="footer-nav" aria-label="Footer navigation">
+                <a href="index.html">Home</a>
+                <a href="happy.html">Happy</a>
+                <a href="peaceful.html">Peaceful</a>
+                <a href="hopeful.html">Hopeful</a>
+                <a href="relaxed.html">Relaxed</a>
+            </nav>
+            <div class="footer-legal">
+                <a href="feedback.html">Feedback</a>
+                <span>|</span>
+                <a href="privacy-policy.html">Privacy Policy</a>
+                <span>|</span>
+                <a href="refund-policy.html">Refund Policy</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- PayPal SDK -->
+    <script src="https://www.paypal.com/sdk/js?client-id=ARrFC94ViRGH-hdl5MUf_E9PoQhZpE7oDZ7IoJBjAtQTj43h1j-tLExWDct-npicl9mYjMx6OimzqD8w&currency=USD" data-sdk-integration-source="button-factory"></script>
+
+    <!-- Upgrade Button (Fixed Position) -->
+    <div class="upgrade-float-btn" id="upgradeFloatBtn" onclick="openUpgradeModal()">
+        <div class="timer-info">
+            <span>⏰ Free: <span id="timerDisplay">12h 0m 0s</span></span>
+        </div>
+        <span class="upgrade-text">⬆️ Upgrade $1.99</span>
+    </div>
+
+    <!-- Subscription Modal -->
+    <div id="subscriptionModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('subscriptionModal')">&times;</button>
+            <div class="modal-header">
+                <h2>Unlock Premium</h2>
+                <p>Get lifetime access to all features</p>
+            </div>
+            <div class="pricing-card">
+                <div class="price">
+                    <span class="currency">$</span>
+                    <span class="amount">1.99</span>
+                    <span class="period">lifetime</span>
+                </div>
+                <ul class="features">
+                    <li>Lifetime access</li>
+                    <li>All 10 mood categories</li>
+                    <li>High-quality images</li>
+                    <li>No time limits!</li>
+                </ul>
+                <div class="payment-form">
+                    <div id="paypal-button-container"></div>
+                    <p class="secure-note">🔒 Secure payment via PayPal</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Subscription Success Modal -->
+    <div id="successModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="success-animation">
+                <svg viewBox="0 0 24 24" fill="#4CAF50"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+            </div>
+            <h2>Welcome, Premium Member!</h2>
+            <p>You now have unlimited access to all mood categories</p>
+            <button onclick="closeModal('successModal'); location.reload();" class="subscribe-btn">
+                Start Exploring
+            </button>
+        </div>
+    </div>
+    
+    <!-- Subscription System Script -->
+    <script>
+    let subscriptionState = {
+        isSubscribed: false,
+        timeRemaining: 12 * 60 * 60 // 12 hours in seconds
+    };
+
+    function openUpgradeModal() {
+        document.getElementById('subscriptionModal').style.display = 'flex';
+        document.getElementById('subscriptionModal').classList.add('active');
+        // Initialize PayPal button when modal opens
+        if (typeof paypal !== 'undefined') {
+            initPayPalButton();
+        }
+    }
+
+    function closeModal(modalId) {
+        const modal = document.getElementById(modalId);
+        modal.classList.remove('active');
+        modal.style.display = 'none';
+    }
+
+    function unlockPremium() {
+        subscriptionState.isSubscribed = true;
+        const subscriptionData = {
+            isSubscribed: true,
+            subscriptionEndDate: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString()
+        };
+        localStorage.setItem('moodGallerySubscription', JSON.stringify(subscriptionData));
+        console.log('Saved subscription:', subscriptionData);
+        closeModal('subscriptionModal');
+        document.getElementById('successModal').style.display = 'flex';
+        document.getElementById('successModal').classList.add('active');
+        document.getElementById('upgradeFloatBtn').style.display = 'none';
+        
+        // Remove locked class from all mood buttons
+        document.querySelectorAll('.mood-btn.locked').forEach(btn => {
+            btn.classList.remove('locked');
+        });
+        document.querySelectorAll('.premium-badge').forEach(badge => {
+            badge.style.display = 'none';
+        });
+    }
+
+    // Check if subscribed and unlock, or show payment
+    function checkAndUnlock(btn, targetUrl) {
+        const stored = localStorage.getItem('moodGallerySubscription');
+        let isSubscribed = false;
+        if (stored) {
+            try {
+                const data = JSON.parse(stored);
+                isSubscribed = data.isSubscribed && new Date(data.subscriptionEndDate) > new Date();
+            } catch(e) {}
+        }
+        
+        if (isSubscribed) {
+            // Trigger fullscreen first, then navigate
+            triggerFullscreenAndNavigate(targetUrl);
+        } else {
+            // Not subscribed, show payment modal
+            openUpgradeModal();
+        }
+    }
+    
+    // Trigger fullscreen then navigate
+    function triggerFullscreenAndNavigate(url) {
+        const elem = document.documentElement;
+        const goFullscreen = () => {
+            if (elem.requestFullscreen) {
+                elem.requestFullscreen().then(() => {
+                    setTimeout(() => window.location.href = url, 100);
+                }).catch(() => {
+                    window.location.href = url;
+                });
+            } else if (elem.webkitRequestFullscreen) {
+                elem.webkitRequestFullscreen();
+                setTimeout(() => window.location.href = url, 100);
+            } else if (elem.msRequestFullscreen) {
+                elem.msRequestFullscreen();
+                setTimeout(() => window.location.href = url, 100);
+            } else {
+                window.location.href = url;
+            }
+        };
+        goFullscreen();
+    }
+
+    // Update timer display
+    function updateTimerDisplay() {
+        const hours = Math.floor(subscriptionState.timeRemaining / 3600);
+        const minutes = Math.floor((subscriptionState.timeRemaining % 3600) / 60);
+        const seconds = subscriptionState.timeRemaining % 60;
+        
+        let display = '';
+        if (hours > 0) {
+            display = `${hours}h ${minutes}m ${seconds}s`;
+        } else if (minutes > 0) {
+            display = `${minutes}m ${seconds}s`;
+        } else {
+            display = `${seconds}s`;
+        }
+        
+        const timerEl = document.getElementById('timerDisplay');
+        if (timerEl) {
+            timerEl.textContent = display;
+        }
+    }
+
+    // Save state
+    function saveState() {
+        localStorage.setItem('moodGallerySubscription', JSON.stringify({
+            isSubscribed: subscriptionState.isSubscribed,
+            timeRemaining: subscriptionState.timeRemaining,
+            subscriptionEndDate: subscriptionState.isSubscribed ? 
+                new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString() : null
+        }));
+    }
+
+    // Start countdown timer
+    function startTimer() {
+        updateTimerDisplay();
+        const timerInterval = setInterval(() => {
+            if (subscriptionState.isSubscribed) {
+                clearInterval(timerInterval);
+                return;
+            }
+            
+            subscriptionState.timeRemaining--;
+            updateTimerDisplay();
+            saveState();
+            
+            // Time's up - show payment modal
+            if (subscriptionState.timeRemaining <= 0) {
+                clearInterval(timerInterval);
+                openUpgradeModal();
+            }
+        }, 1000);
+    }
+
+    // Initialize PayPal button
+    function initPayPalButton() {
+        const container = document.getElementById('paypal-button-container');
+        if (!container || container.hasAttribute('data-initialized')) return;
+        
+        container.setAttribute('data-initialized', 'true');
+        
+        if (typeof paypal !== 'undefined') {
+            paypal.Buttons({
+                style: {
+                    layout: 'vertical',
+                    color: 'gold',
+                    shape: 'rect',
+                    label: 'paypal'
+                },
+                createOrder: function(data, actions) {
+                    return actions.order.create({
+                        purchase_units: [{
+                            description: 'Mood Gallery Premium',
+                            amount: { value: '1.99' }
+                        }]
+                    });
+                },
+                onApprove: function(data, actions) {
+                    return actions.order.capture().then(function(details) {
+                        console.log('Payment successful:', details);
+                        // Save subscription first
+                        localStorage.setItem('moodGallerySubscription', JSON.stringify({
+                            isSubscribed: true,
+                            subscriptionEndDate: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString()
+                        }));
+                        // Unlock UI
+                        unlockPremium();
+                        // Set flag so user can access pages without redirect
+                        sessionStorage.setItem('justPaid', '1');
+                    });
+                },
+                onError: function(err) {
+                    console.error('PayPal error:', err);
+                    alert('Payment error. Please try again.');
+                }
+            }).render('#paypal-button-container');
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        // Check subscription status on page load
+        const stored = localStorage.getItem('moodGallerySubscription');
+        let isSubscribed = false;
+        if (stored) {
+            try {
+                const data = JSON.parse(stored);
+                isSubscribed = data.isSubscribed && new Date(data.subscriptionEndDate) > new Date();
+                // Restore timer state
+                if (data.timeRemaining) {
+                    subscriptionState.timeRemaining = data.timeRemaining;
+                }
+            } catch(e) {}
+        }
+
+        // If subscribed, hide upgrade button and remove locked class
+        if (isSubscribed) {
+            const upgradeBtn = document.getElementById('upgradeFloatBtn');
+            if (upgradeBtn) upgradeBtn.style.display = 'none';
+            document.querySelectorAll('.mood-btn.locked').forEach(btn => btn.classList.remove('locked'));
+            document.querySelectorAll('.premium-badge').forEach(badge => badge.style.display = 'none');
+        }
+
+        // Initialize PayPal button if SDK is ready
+        if (typeof paypal !== 'undefined') {
+            initPayPalButton();
+        }
+
+        // Close modal on backdrop click
+        document.querySelectorAll('.modal').forEach(modal => {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    closeModal(modal.id);
+                }
+            });
+        });
+
+        // Locked mood button click handler
+        document.querySelectorAll('.mood-btn.locked').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                openUpgradeModal();
+            });
+        });
+
+        // Start the countdown timer
+        startTimer();
+    });
+    
+    // Fullscreen Mood Viewer
+    function startFullscreenMood(mood, query, musicFolder) {
+        const stored = localStorage.getItem('moodGallerySubscription');
+        let isSubscribed = false;
+        if (stored) {
+            try {
+                const data = JSON.parse(stored);
+                isSubscribed = data.isSubscribed && new Date(data.subscriptionEndDate) > new Date();
+            } catch(e) {}
+        }
+        
+        if (!isSubscribed) {
+            openUpgradeModal();
+            return;
+        }
+        
+        // Create fullscreen viewer
+        createFullscreenViewer(mood, query, musicFolder);
+    }
+    
+    function createFullscreenViewer(mood, query, musicFolder) {
+        // Enter fullscreen
+        const elem = document.documentElement;
+        const requestFS = elem.requestFullscreen || elem.webkitRequestFullscreen || elem.msRequestFullscreen;
+        if (requestFS) requestFS.call(elem);
+        
+        // Create overlay
+        const overlay = document.createElement('div');
+        overlay.id = 'fullscreen-mood-overlay';
+        overlay.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:#000;z-index:99999;display:flex;flex-direction:column;';
+        overlay.innerHTML = `
+            <div id="fs-header" style="position:absolute;top:10px;left:50%;transform:translateX(-50%);z-index:100001;color:white;font-family:Inter,sans-serif;text-align:center;padding:10px 20px;background:rgba(0,0,0,0.5);border-radius:20px;">
+                <span id="fs-mood-name" style="font-size:1.2em;font-weight:600;"></span>
+                <span id="fs-slide-counter" style="margin-left:15px;font-size:0.9em;opacity:0.8;"></span>
+            </div>
+            <button onclick="closeFullscreenMood()" style="position:absolute;top:15px;right:20px;z-index:100002;background:rgba(255,255,255,0.2);border:none;color:white;font-size:1.5em;padding:10px 15px;border-radius:50%;cursor:pointer;">✕</button>
+            <div id="fs-carousel" style="flex:1;display:flex;align-items:center;justify-content:center;position:relative;"></div>
+            <button onclick="fsPrev()" style="position:absolute;left:20px;top:50%;transform:translateY(-50%);z-index:100001;background:rgba(255,255,255,0.2);border:none;color:white;font-size:2em;padding:20px;cursor:pointer;border-radius:10px;">◀</button>
+            <button onclick="fsNext()" style="position:absolute;right:20px;top:50%;transform:translateY(-50%);z-index:100001;background:rgba(255,255,255,0.2);border:none;color:white;font-size:2em;padding:20px;cursor:pointer;border-radius:10px;">▶</button>
+            <div id="fs-loading" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:white;font-size:1.5em;">Loading...</div>
+        `;
+        document.body.appendChild(overlay);
+        
+        // Set mood name
+        const moodNames = { hopeful: 'Hopeful', healing: 'Healing', focused: 'Focused', amazed: 'Amazed', empty: 'Empty', sleepy: 'Sleepy' };
+        document.getElementById('fs-mood-name').textContent = moodNames[mood] || mood;
+        
+        // Store current query for loading more
+        window.fsQuery = query;
+        window.fsMood = mood;
+        
+        // Fetch initial images
+        fetchImagesFromPexels(query, 3, 1).then(images => {
+            if (images.length > 0) {
+                window.fsImages = images;
+                window.fsIndex = 0;
+                window.fsPage = 1;
+                showFsSlide();
+                document.getElementById('fs-loading').style.display = 'none';
+            }
+        });
+    }
+    
+    async function fetchImagesFromPexels(query, perPage, page) {
+        const API_KEY = 'kng8vqaVKvDQgmymj28XRTHcvhQoTtcVGgllNbiLFt1wXbQXzjQI915i';
+        const pageNum = page || Math.floor(Math.random() * 500) + 1;
+        try {
+            const res = await fetch(`https://api.pexels.com/v1/search?query=${encodeURIComponent(query)}&per_page=${perPage}&page=${pageNum}&orientation=landscape`, {
+                headers: { 'Authorization': API_KEY }
+            });
+            const data = await res.json();
+            return data.photos || [];
+        } catch(e) { return []; }
+    }
+    
+    async function fsLoadMore() {
+        if (window.fsLoadingMore) return;
+        window.fsLoadingMore = true;
+        
+        const newImages = await fetchImagesFromPexels(window.fsQuery, 3, window.fsPage + 1);
+        if (newImages.length > 0) {
+            window.fsImages = window.fsImages.concat(newImages);
+            window.fsPage++;
+            document.getElementById('fs-slide-counter').textContent = `${window.fsIndex + 1} / ${window.fsImages.length}`;
+        }
+        
+        window.fsLoadingMore = false;
+    }
+    
+    function showFsSlide() {
+        const carousel = document.getElementById('fs-carousel');
+        const counter = document.getElementById('fs-slide-counter');
+        if (!window.fsImages || !window.fsImages.length) return;
+        
+        const img = window.fsImages[window.fsIndex];
+        carousel.innerHTML = `<img src="${img.src.large}" style="max-width:100%;max-height:100%;object-fit:contain;" />`;
+        counter.textContent = `${window.fsIndex + 1} / ${window.fsImages.length}`;
+        
+        // Auto load more when approaching end
+        if (window.fsIndex >= window.fsImages.length - 5 && !window.fsLoadingMore) {
+            fsLoadMore();
+        }
+    }
+    
+    function fsPrev() {
+        if (window.fsIndex > 0) { window.fsIndex--; showFsSlide(); }
+        else { window.fsIndex = window.fsImages.length - 1; showFsSlide(); }
+    }
+    
+    function fsNext() {
+        if (window.fsIndex < window.fsImages.length - 1) { window.fsIndex++; showFsSlide(); }
+        else { window.fsIndex = 0; showFsSlide(); }
+    }
+    
+    function closeFullscreenMood() {
+        const overlay = document.getElementById('fullscreen-mood-overlay');
+        if (overlay) overlay.remove();
+        if (document.exitFullscreen) document.exitFullscreen();
+    }
+    </script>
+
+</body>
+</html>
