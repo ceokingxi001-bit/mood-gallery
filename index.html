@@ -182,7 +182,7 @@
     <!-- Upgrade Button (Fixed Position) -->
     <div class="upgrade-float-btn" id="upgradeFloatBtn" onclick="openUpgradeModal()">
         <span class="upgrade-text" id="upgradeButtonLabel">Premium unlock in</span>
-        <span class="timer-info" id="timerDisplay">24:00:00</span>
+        <span class="timer-info" id="timerDisplay">12:00:00</span>
     </div>
 
     <!-- Subscription Modal -->
@@ -191,7 +191,7 @@
             <button class="modal-close" onclick="closeModal('subscriptionModal')">&times;</button>
             <div class="modal-header">
                 <h2>Unlock Premium</h2>
-                <p id="subscriptionSubtitle">Payment is required after your 24-hour preview ends</p>
+                <p id="subscriptionSubtitle">Payment is required after your 12-hour preview ends</p>
             </div>
             <div class="pricing-card" style="text-align: center;">
                 <div class="price" style="display: flex; align-items: baseline; justify-content: center; gap: 4px; margin: 15px 0;">
@@ -371,14 +371,14 @@
             labelEl.textContent = 'Pay $1.99 to unlock';
             timerEl.textContent = 'Trial ended';
             if (subtitleEl) {
-                subtitleEl.textContent = 'Your 24-hour preview has ended. Pay $1.99 to unlock premium moods.';
+                subtitleEl.textContent = 'Your 12-hour preview has ended. Pay $1.99 to unlock premium moods.';
             }
             return;
         }
 
         labelEl.textContent = 'Premium unlocked preview';
         if (subtitleEl) {
-            subtitleEl.textContent = 'Premium moods are open during your 24-hour preview. After the countdown ends, payment is required to unlock them again.';
+            subtitleEl.textContent = 'Premium moods are open during your 12-hour preview. After the countdown ends, payment is required to unlock them again.';
         }
     }
 
