@@ -91,16 +91,16 @@
                     <span class="mood-desc">Calm mountain landscapes</span>
                     <span class="free-badge">Free</span>
                 </a>
-                <a href="hopeful.html" class="mood-btn locked" data-mood="hopeful">
+                <a href="hopeful.html" class="mood-btn paid-btn" data-mood="hopeful">
                     <span class="mood-icon">🌅</span>
                     <span class="mood-name">Hopeful</span>
                     <span class="mood-desc">Sunrise and new beginnings</span>
-                    <span class="premium-badge">Premium $1.99</span>
+                    <span class="paid-badge">🔓 Unlock</span>
                 </a>
                 <a href="relaxed.html" class="mood-btn" data-mood="relaxed">
                     <span class="mood-icon">🧘</span>
                     <span class="mood-name">Relaxed</span>
-                    <span class="mood-desc">Ocean waves and serenity</span>
+                    <span class="mood-desc">Tropical island escape and resort calm</span>
                     <span class="free-badge">Free</span>
                 </a>
                 <a href="romantic.html" class="mood-btn" data-mood="romantic">
@@ -109,35 +109,35 @@
                     <span class="mood-desc">Love and romance</span>
                     <span class="free-badge">Free</span>
                 </a>
-                <a href="healing.html" class="mood-btn locked" data-mood="healing">
+                <a href="healing.html" class="mood-btn paid-btn" data-mood="healing">
                     <span class="mood-icon">🌿</span>
                     <span class="mood-name">Healing</span>
                     <span class="mood-desc">Nature's restorative beauty</span>
-                    <span class="premium-badge">Premium $1.99</span>
+                    <span class="paid-badge">🔓 Unlock</span>
                 </a>
-                <a href="focused.html" class="mood-btn locked" data-mood="focused">
+                <a href="focused.html" class="mood-btn paid-btn" data-mood="focused">
                     <span class="mood-icon">🎯</span>
                     <span class="mood-name">Focused</span>
                     <span class="mood-desc">Concentration and productivity</span>
-                    <span class="premium-badge">Premium $1.99</span>
+                    <span class="paid-badge">🔓 Unlock</span>
                 </a>
-                <a href="amazed.html" class="mood-btn locked" data-mood="amazed">
+                <a href="amazed.html" class="mood-btn paid-btn" data-mood="amazed">
                     <span class="mood-icon">✨</span>
                     <span class="mood-name">Amazed</span>
                     <span class="mood-desc">Stunning cosmic views</span>
-                    <span class="premium-badge">Premium $1.99</span>
+                    <span class="paid-badge">🔓 Unlock</span>
                 </a>
-                <a href="empty.html" class="mood-btn locked" data-mood="empty">
+                <a href="empty.html" class="mood-btn paid-btn" data-mood="empty">
                     <span class="mood-icon">☁️</span>
                     <span class="mood-name">Empty</span>
                     <span class="mood-desc">Clear blue skies</span>
-                    <span class="premium-badge">Premium $1.99</span>
+                    <span class="paid-badge">🔓 Unlock</span>
                 </a>
-                <a href="sleepy.html" class="mood-btn locked" data-mood="sleepy">
+                <a href="sleepy.html" class="mood-btn paid-btn" data-mood="sleepy">
                     <span class="mood-icon">😴</span>
                     <span class="mood-name">Sleepy</span>
                     <span class="mood-desc">Peaceful sleep time</span>
-                    <span class="premium-badge">Premium $1.99</span>
+                    <span class="paid-badge">🔓 Unlock</span>
                 </a>
                 <a href="feedback.html" class="mood-btn feedback-btn" data-mood="feedback">
                     <span class="mood-icon">💬</span>
@@ -176,40 +176,35 @@
         </div>
     </footer>
 
-    <!-- PayPal SDK -->
-    <script src="https://www.paypal.com/sdk/js?client-id=ARrFC94ViRGH-hdl5MUf_E9PoQhZpE7oDZ7IoJBjAtQTj43h1j-tLExWDct-npicl9mYjMx6OimzqD8w&currency=USD" data-sdk-integration-source="button-factory"></script>
+    <!-- PayPal SDK (Live Mode) -->
+    <script src="https://www.paypal.com/sdk/js?client-id=ARrFC94ViRGH-hdl5MUf_E9PoQhZpE7oDZ7IoJBjAtQTj43h1j-tLExWDct-npicl9mYjMx6OimzqD8w&currency=USD&intent=capture" data-sdk-integration-source="button-factory"></script>
 
     <!-- Upgrade Button (Fixed Position) -->
     <div class="upgrade-float-btn" id="upgradeFloatBtn" onclick="openUpgradeModal()">
-        <div class="timer-info">
-            <span>⏰ Free: <span id="timerDisplay">12h 0m 0s</span></span>
-        </div>
-        <span class="upgrade-text">⬆️ Upgrade $1.99</span>
+        <span class="upgrade-text" id="upgradeButtonLabel">Premium unlock in</span>
+        <span class="timer-info" id="timerDisplay">24:00:00</span>
     </div>
 
     <!-- Subscription Modal -->
-    <div id="subscriptionModal" class="modal" style="display: none;">
-        <div class="modal-content">
+    <div id="subscriptionModal" class="modal" style="display: none; align-items: flex-start; padding-top: 1vh;">
+        <div class="modal-content" style="max-height: 98vh; overflow-y: auto; width: 320px; box-sizing: border-box; padding-bottom: 60px;">
             <button class="modal-close" onclick="closeModal('subscriptionModal')">&times;</button>
             <div class="modal-header">
                 <h2>Unlock Premium</h2>
-                <p>Get lifetime access to all features</p>
+                <p id="subscriptionSubtitle">Payment is required after your 24-hour preview ends</p>
             </div>
-            <div class="pricing-card">
-                <div class="price">
-                    <span class="currency">$</span>
-                    <span class="amount">1.99</span>
-                    <span class="period">lifetime</span>
+            <div class="pricing-card" style="text-align: center;">
+                <div class="price" style="display: flex; align-items: baseline; justify-content: center; gap: 4px; margin: 15px 0;">
+                    <span class="currency" style="font-size: 1.5rem; font-weight: 600;">USD $</span>
+                    <span class="amount" style="font-size: 2.5rem; font-weight: 700;">1.99</span>
                 </div>
-                <ul class="features">
+                <ul class="features" style="text-align: left; padding-left: 20px;">
                     <li>Lifetime access</li>
-                    <li>All 10 mood categories</li>
+                    <li>All mood categories</li>
                     <li>High-quality images</li>
-                    <li>No time limits!</li>
                 </ul>
-                <div class="payment-form">
+                <div class="payment-form" style="padding: 20px 0 30px 0; min-height: 120px; overflow: visible;">
                     <div id="paypal-button-container"></div>
-                    <p class="secure-note">🔒 Secure payment via PayPal</p>
                 </div>
             </div>
         </div>
@@ -231,12 +226,165 @@
     
     <!-- Subscription System Script -->
     <script>
+    // Subscription system ready - show upgrade modal on paid button click
+    // (auto-subscription disabled - users must pay to unlock)
+
     let subscriptionState = {
         isSubscribed: false,
-        timeRemaining: 12 * 60 * 60 // 12 hours in seconds
+        trialStartedAt: null,
+        trialEndsAt: null,
+        timeRemaining: 24 * 60 * 60,
+        trialExpired: false
     };
 
+    const TRIAL_DURATION_MS = 24 * 60 * 60 * 1000;
+    const RESET_EXPIRED_TRIAL_ON_LOAD = false;
+
+    function getStoredSubscriptionData() {
+        const stored = localStorage.getItem('moodGallerySubscription');
+        if (!stored) return null;
+
+        try {
+            return JSON.parse(stored);
+        } catch (error) {
+            console.error('Failed to parse subscription data:', error);
+            return null;
+        }
+    }
+
+    function getActiveSubscription(data = getStoredSubscriptionData()) {
+        if (!data || !data.isSubscribed || !data.subscriptionEndDate) {
+            return false;
+        }
+
+        return new Date(data.subscriptionEndDate) > new Date();
+    }
+
+    function getOrCreateTrialState(data = getStoredSubscriptionData()) {
+        const now = Date.now();
+        let shouldPersist = false;
+        const nextData = data ? { ...data } : {};
+
+        if (!nextData.trialStartedAt) {
+            nextData.trialStartedAt = new Date(now).toISOString();
+            shouldPersist = true;
+        }
+
+        if (!nextData.trialEndsAt) {
+            nextData.trialEndsAt = new Date(new Date(nextData.trialStartedAt).getTime() + TRIAL_DURATION_MS).toISOString();
+            shouldPersist = true;
+        }
+
+        let endsAt = new Date(nextData.trialEndsAt).getTime();
+        let remainingMs = Math.max(0, endsAt - now);
+        const trialDurationMs = new Date(nextData.trialEndsAt).getTime() - new Date(nextData.trialStartedAt).getTime();
+        const needsTrialRefresh = !getActiveSubscription(nextData) && (trialDurationMs !== TRIAL_DURATION_MS || remainingMs <= 0);
+
+        if (needsTrialRefresh) {
+            nextData.isSubscribed = false;
+            nextData.subscriptionEndDate = null;
+            nextData.trialStartedAt = new Date(now).toISOString();
+            nextData.trialEndsAt = new Date(now + TRIAL_DURATION_MS).toISOString();
+            endsAt = new Date(nextData.trialEndsAt).getTime();
+            remainingMs = Math.max(0, endsAt - now);
+            shouldPersist = true;
+        }
+
+        if (shouldPersist) {
+            localStorage.setItem('moodGallerySubscription', JSON.stringify(nextData));
+        }
+
+        return {
+            data: nextData,
+            remainingMs,
+            expired: remainingMs <= 0
+        };
+    }
+
+    function syncSubscriptionState() {
+        const storedData = getStoredSubscriptionData();
+        const isSubscribed = getActiveSubscription(storedData);
+        const trialState = getOrCreateTrialState(storedData);
+
+        subscriptionState.isSubscribed = isSubscribed;
+        subscriptionState.trialStartedAt = trialState.data.trialStartedAt;
+        subscriptionState.trialEndsAt = trialState.data.trialEndsAt;
+        subscriptionState.timeRemaining = Math.floor(trialState.remainingMs / 1000);
+        subscriptionState.trialExpired = trialState.expired;
+
+        return {
+            isSubscribed,
+            trialExpired: trialState.expired
+        };
+    }
+
+    function isPaymentRequired() {
+        syncSubscriptionState();
+        return !subscriptionState.isSubscribed && subscriptionState.trialExpired;
+    }
+
+    function updatePaidMoodBadges() {
+        const paidButtons = document.querySelectorAll('.mood-btn[data-mood].paid-btn, .mood-btn[data-mood]:not(.feedback-btn)');
+
+        if (subscriptionState.isSubscribed) {
+            document.querySelectorAll('.paid-badge').forEach(badge => {
+                badge.textContent = '✅ Unlocked';
+                badge.style.background = 'linear-gradient(135deg, #4CAF50, #45a049)';
+            });
+            paidButtons.forEach(btn => btn.classList.remove('locked'));
+            return;
+        }
+
+        if (subscriptionState.trialExpired) {
+            document.querySelectorAll('.paid-badge').forEach(badge => {
+                badge.textContent = '🔒 Lock';
+                badge.style.background = 'linear-gradient(135deg, #667eea, #764ba2)';
+            });
+            paidButtons.forEach(btn => btn.classList.add('locked'));
+            return;
+        }
+
+        document.querySelectorAll('.paid-badge').forEach(badge => {
+            badge.textContent = '🔓 Unlock';
+            badge.style.background = 'linear-gradient(135deg, #4CAF50, #45a049)';
+        });
+        paidButtons.forEach(btn => btn.classList.remove('locked'));
+    }
+
+    function updateUpgradeCta() {
+        const labelEl = document.getElementById('upgradeButtonLabel');
+        const timerEl = document.getElementById('timerDisplay');
+        const subtitleEl = document.getElementById('subscriptionSubtitle');
+
+        if (!labelEl || !timerEl) return;
+
+        if (subscriptionState.isSubscribed) {
+            labelEl.textContent = 'Unlocked';
+            timerEl.textContent = 'Enjoy all moods';
+            if (subtitleEl) {
+                subtitleEl.textContent = 'You already have lifetime premium access';
+            }
+            return;
+        }
+
+        if (subscriptionState.trialExpired) {
+            labelEl.textContent = 'Pay $1.99 to unlock';
+            timerEl.textContent = 'Trial ended';
+            if (subtitleEl) {
+                subtitleEl.textContent = 'Your 24-hour preview has ended. Pay $1.99 to unlock premium moods.';
+            }
+            return;
+        }
+
+        labelEl.textContent = 'Premium unlocked preview';
+        if (subtitleEl) {
+            subtitleEl.textContent = 'Premium moods are open during your 24-hour preview. After the countdown ends, payment is required to unlock them again.';
+        }
+    }
+
     function openUpgradeModal() {
+        syncSubscriptionState();
+        updateUpgradeCta();
         document.getElementById('subscriptionModal').style.display = 'flex';
         document.getElementById('subscriptionModal').classList.add('active');
         // Initialize PayPal button when modal opens
@@ -253,7 +401,9 @@
 
     function unlockPremium() {
         subscriptionState.isSubscribed = true;
+        const existingData = getStoredSubscriptionData() || {};
         const subscriptionData = {
+            ...existingData,
             isSubscribed: true,
             subscriptionEndDate: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString()
         };
@@ -271,26 +421,27 @@
         document.querySelectorAll('.premium-badge').forEach(badge => {
             badge.style.display = 'none';
         });
+        // Change paid badges from "🔒 Lock" to "✅ Unlocked"
+        document.querySelectorAll('.paid-badge').forEach(badge => {
+            badge.textContent = '✅ Unlocked';
+            badge.style.background = 'linear-gradient(135deg, #4CAF50, #45a049)';
+        });
+        // Remove lock icon from paid-btn
+        document.querySelectorAll('.mood-btn.paid-btn').forEach(btn => {
+            btn.classList.remove('paid-btn');
+        });
     }
 
     // Check if subscribed and unlock, or show payment
     function checkAndUnlock(btn, targetUrl) {
-        const stored = localStorage.getItem('moodGallerySubscription');
-        let isSubscribed = false;
-        if (stored) {
-            try {
-                const data = JSON.parse(stored);
-                isSubscribed = data.isSubscribed && new Date(data.subscriptionEndDate) > new Date();
-            } catch(e) {}
-        }
-        
-        if (isSubscribed) {
-            // Trigger fullscreen first, then navigate
+        const badgeText = btn?.querySelector('.paid-badge')?.textContent?.trim() || '';
+
+        if (badgeText.includes('Unlock') || !isPaymentRequired()) {
             triggerFullscreenAndNavigate(targetUrl);
-        } else {
-            // Not subscribed, show payment modal
-            openUpgradeModal();
+            return;
         }
+
+        openUpgradeModal();
     }
     
     // Trigger fullscreen then navigate
@@ -318,52 +469,57 @@
 
     // Update timer display
     function updateTimerDisplay() {
-        const hours = Math.floor(subscriptionState.timeRemaining / 3600);
-        const minutes = Math.floor((subscriptionState.timeRemaining % 3600) / 60);
-        const seconds = subscriptionState.timeRemaining % 60;
+        const totalSeconds = Math.max(0, subscriptionState.timeRemaining);
+        const hours = Math.floor(totalSeconds / 3600);
+        const minutes = Math.floor((totalSeconds % 3600) / 60);
+        const seconds = totalSeconds % 60;
         
-        let display = '';
-        if (hours > 0) {
-            display = `${hours}h ${minutes}m ${seconds}s`;
-        } else if (minutes > 0) {
-            display = `${minutes}m ${seconds}s`;
-        } else {
-            display = `${seconds}s`;
-        }
+        const display = [hours, minutes, seconds]
+            .map(value => String(value).padStart(2, '0'))
+            .join(':');
         
         const timerEl = document.getElementById('timerDisplay');
         if (timerEl) {
-            timerEl.textContent = display;
+            timerEl.textContent = subscriptionState.trialExpired ? 'Trial ended' : display;
         }
+
+        updateUpgradeCta();
+        updatePaidMoodBadges();
     }
 
     // Save state
     function saveState() {
+        const existingData = getStoredSubscriptionData() || {};
         localStorage.setItem('moodGallerySubscription', JSON.stringify({
+            ...existingData,
             isSubscribed: subscriptionState.isSubscribed,
             timeRemaining: subscriptionState.timeRemaining,
+            trialStartedAt: subscriptionState.trialStartedAt,
+            trialEndsAt: subscriptionState.trialEndsAt,
             subscriptionEndDate: subscriptionState.isSubscribed ? 
-                new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString() : null
+                new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString() : existingData.subscriptionEndDate || null
         }));
     }
 
     // Start countdown timer
     function startTimer() {
+        syncSubscriptionState();
         updateTimerDisplay();
+
         const timerInterval = setInterval(() => {
+            syncSubscriptionState();
+
             if (subscriptionState.isSubscribed) {
                 clearInterval(timerInterval);
+                updateTimerDisplay();
                 return;
             }
             
-            subscriptionState.timeRemaining--;
             updateTimerDisplay();
             saveState();
             
-            // Time's up - show payment modal
-            if (subscriptionState.timeRemaining <= 0) {
+            if (subscriptionState.trialExpired) {
                 clearInterval(timerInterval);
-                openUpgradeModal();
             }
         }, 1000);
     }
@@ -376,64 +532,100 @@
         container.setAttribute('data-initialized', 'true');
         
         if (typeof paypal !== 'undefined') {
-            paypal.Buttons({
-                style: {
-                    layout: 'vertical',
-                    color: 'gold',
-                    shape: 'rect',
-                    label: 'paypal'
-                },
-                createOrder: function(data, actions) {
-                    return actions.order.create({
-                        purchase_units: [{
-                            description: 'Mood Gallery Premium',
-                            amount: { value: '1.99' }
-                        }]
+            try {
+                const buttons = paypal.Buttons({
+                    style: {
+                        layout: 'vertical',
+                        color: 'gold',
+                        shape: 'rect',
+                        label: 'paypal',
+                        tagline: false,
+                        height: 45
+                    },
+                    createOrder: function(data, actions) {
+                        console.log('Creating order...');
+                        return actions.order.create({
+                            purchase_units: [{
+                                description: 'Mood Gallery Premium',
+                                amount: {
+                                    currency_code: 'USD',
+                                    value: '1.99'
+                                }
+                            }]
+                        });
+                    },
+                    onApprove: function(data, actions) {
+                        console.log('Order approved:', data.orderID);
+                        console.log('Capturing payment...');
+                        return actions.order.capture().then(function(details) {
+                            console.log('Payment completed successfully!', details);
+                            console.log('Payer:', details.payer ? details.payer.name : 'N/A');
+                            
+                            // Save subscription
+                            const existingData = getStoredSubscriptionData() || {};
+                            const subscriptionData = {
+                                ...existingData,
+                                isSubscribed: true,
+                                subscriptionEndDate: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString()
+                            };
+                            localStorage.setItem('moodGallerySubscription', JSON.stringify(subscriptionData));
+                            console.log('Saved subscription:', subscriptionData);
+                            
+                            // Unlock premium
+                            unlockPremium();
+                            
+                            // Show success
+                            sessionStorage.setItem('justPaid', '1');
+                            
+                            alert('支付成功！感谢您的购买。');
+                        });
+                    },
+                    onCancel: function(data) {
+                        console.log('Payment cancelled');
+                    },
+                    onError: function(err) {
+                        console.error('PayPal error:', err);
+                        alert('支付出错，请稍后重试。');
+                    }
+                });
+                
+                buttons.render('#paypal-button-container');
+                console.log('PayPal button rendered');
+            } catch(e) {
+                console.error('PayPal render error:', e);
+            }
+            
+            // Hide PayPal tagline elements
+            setTimeout(() => {
+                const paymentForm = document.querySelector('.payment-form');
+                if (paymentForm) {
+                    Array.from(paymentForm.children).forEach(child => {
+                        if (child.id !== 'paypal-button-container') {
+                            child.style.display = 'none';
+                        }
                     });
-                },
-                onApprove: function(data, actions) {
-                    return actions.order.capture().then(function(details) {
-                        console.log('Payment successful:', details);
-                        // Save subscription first
-                        localStorage.setItem('moodGallerySubscription', JSON.stringify({
-                            isSubscribed: true,
-                            subscriptionEndDate: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString()
-                        }));
-                        // Unlock UI
-                        unlockPremium();
-                        // Set flag so user can access pages without redirect
-                        sessionStorage.setItem('justPaid', '1');
-                    });
-                },
-                onError: function(err) {
-                    console.error('PayPal error:', err);
-                    alert('Payment error. Please try again.');
                 }
-            }).render('#paypal-button-container');
+            }, 100);
+        } else {
+            console.error('PayPal SDK not loaded');
         }
     }
 
     document.addEventListener('DOMContentLoaded', () => {
-        // Check subscription status on page load
-        const stored = localStorage.getItem('moodGallerySubscription');
-        let isSubscribed = false;
-        if (stored) {
-            try {
-                const data = JSON.parse(stored);
-                isSubscribed = data.isSubscribed && new Date(data.subscriptionEndDate) > new Date();
-                // Restore timer state
-                if (data.timeRemaining) {
-                    subscriptionState.timeRemaining = data.timeRemaining;
-                }
-            } catch(e) {}
-        }
+        console.log('=== index.html DOMContentLoaded ===');
+        
+        const { isSubscribed } = syncSubscriptionState();
+        updateTimerDisplay();
 
-        // If subscribed, hide upgrade button and remove locked class
+        // If subscribed, hide upgrade button and show unlocked state
         if (isSubscribed) {
             const upgradeBtn = document.getElementById('upgradeFloatBtn');
             if (upgradeBtn) upgradeBtn.style.display = 'none';
-            document.querySelectorAll('.mood-btn.locked').forEach(btn => btn.classList.remove('locked'));
             document.querySelectorAll('.premium-badge').forEach(badge => badge.style.display = 'none');
+            document.querySelectorAll('.mood-btn.paid-btn').forEach(btn => {
+                btn.classList.remove('paid-btn');
+                btn.classList.remove('locked');
+            });
         }
 
         // Initialize PayPal button if SDK is ready
@@ -450,11 +642,34 @@
             });
         });
 
-        // Locked mood button click handler
-        document.querySelectorAll('.mood-btn.locked').forEach(btn => {
-            btn.addEventListener('click', (e) => {
+        // Locked mood button click handler — delegate to document so dynamic .locked buttons also trigger
+        document.addEventListener('click', (e) => {
+            const lockedBtn = e.target.closest('.mood-btn.locked');
+            if (lockedBtn) {
                 e.preventDefault();
                 openUpgradeModal();
+            }
+        });
+
+        // Free mood buttons - force direct navigation
+        document.querySelectorAll('.mood-btn:not(.paid-btn):not(.feedback-btn)').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const href = btn.getAttribute('href');
+                if (href) {
+                    e.preventDefault();
+                    window.location.href = href;
+                }
+            });
+        });
+
+        // Paid mood buttons - unlock badges navigate, locked badges open payment
+        document.querySelectorAll('.mood-btn.paid-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const href = btn.getAttribute('href');
+                if (href) {
+                    checkAndUnlock(btn, href);
+                }
             });
         });
 
@@ -464,21 +679,11 @@
     
     // Fullscreen Mood Viewer
     function startFullscreenMood(mood, query, musicFolder) {
-        const stored = localStorage.getItem('moodGallerySubscription');
-        let isSubscribed = false;
-        if (stored) {
-            try {
-                const data = JSON.parse(stored);
-                isSubscribed = data.isSubscribed && new Date(data.subscriptionEndDate) > new Date();
-            } catch(e) {}
-        }
-        
-        if (!isSubscribed) {
+        if (isPaymentRequired()) {
             openUpgradeModal();
             return;
         }
         
-        // Create fullscreen viewer
         createFullscreenViewer(mood, query, musicFolder);
     }
     

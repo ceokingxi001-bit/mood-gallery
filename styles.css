@@ -1008,15 +1008,95 @@ body {
         font-size: 0.75rem;
     }
 
-    .paypal-container iframe {
-        transform: scale(0.7);
-        transform-origin: center;
+/* Subscription Modal Mobile Fix */
+    #subscriptionModal .modal-content,
+    #subscriptionModal.modal-content {
+        max-width: 98vw !important;
+        width: 320px !important;
+        padding: 1rem !important;
+        margin: 0 auto !important;
+        max-height: 90vh !important;
+        overflow-y: auto !important;
+        box-sizing: border-box !important;
+    }
+
+    #subscriptionModal .pricing-card {
+        padding: 0.5rem;
+        text-align: center;
+    }
+
+    #subscriptionModal .pricing-card .price {
+        display: flex !important;
+        align-items: baseline !important;
+        justify-content: center !important;
+        gap: 4px !important;
+        margin: 15px 0 !important;
+        flex-wrap: wrap;
+    }
+
+    #subscriptionModal .pricing-card .currency {
+        font-size: 1.2rem !important;
+        font-weight: 600;
+    }
+
+    #subscriptionModal .pricing-card .amount {
+        font-size: 2rem !important;
+    }
+
+    #subscriptionModal .pricing-card .period {
+        font-size: 0.9rem !important;
+    }
+
+    #subscriptionModal .pricing-card .features {
+        margin: 10px 0 !important;
+        padding-left: 20px !important;
+        text-align: left;
+    }
+
+    #subscriptionModal .pricing-card .features li {
+        padding: 5px 0;
+        font-size: 0.85rem;
+    }
+
+    #paypal-button-container {
+        min-width: unset !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+    }
+
+    #paypal-button-container > * {
+        max-width: 100% !important;
+    }
+
+    .modal-header h2 {
+        font-size: 1.2rem !important;
+        margin-bottom: 0.3rem;
+    }
+
+    .modal-header p {
+        font-size: 0.85rem;
+        margin: 0;
     }
 }
 
 /* ==================== Locked Mood Button ==================== */
 .mood-btn.locked {
     opacity: 1;
+}
+
+.mood-btn.paid-btn {
+    position: relative;
+    opacity: 1;
+}
+
+.mood-btn.paid-btn::after {
+    content: '🔒';
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    font-size: 1.1rem;
 }
 
 .mood-btn.locked:hover {
@@ -1052,6 +1132,19 @@ body {
 }
 
 .free-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: linear-gradient(135deg, #4CAF50, #45a049);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    z-index: 5;
+}
+
+.paid-badge {
     position: absolute;
     top: 1rem;
     right: 1rem;
@@ -1519,4 +1612,20 @@ body {
 #successModal .modal-content p {
     text-align: center;
     margin-bottom: 1.5rem;
+}
+
+/* ==================== Hide PayPal Tagline ==================== */
+.payment-form {
+    position: relative;
+    min-height: 50px;
+}
+
+/* Hide tagline text below PayPal button */
+#paypal-button-container + div,
+#paypal-button-container ~ div:not(#paypal-button-container) {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
 }
