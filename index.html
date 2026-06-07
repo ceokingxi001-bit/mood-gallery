@@ -176,54 +176,6 @@
         </div>
     </footer>
 
-    <!-- PayPal SDK (Live Mode) -->
-    <script src="https://www.paypal.com/sdk/js?client-id=ARrFC94ViRGH-hdl5MUf_E9PoQhZpE7oDZ7IoJBjAtQTj43h1j-tLExWDct-npicl9mYjMx6OimzqD8w&currency=USD&intent=capture" data-sdk-integration-source="button-factory"></script>
-
-    <!-- Upgrade Button (Fixed Position) -->
-    <div class="upgrade-float-btn" id="upgradeFloatBtn" onclick="openUpgradeModal()">
-        <span class="upgrade-text" id="upgradeButtonLabel">Premium unlock in</span>
-        <span class="timer-info" id="timerDisplay">12:00:00</span>
-    </div>
-
-    <!-- Subscription Modal -->
-    <div id="subscriptionModal" class="modal" style="display: none; align-items: flex-start; padding-top: 1vh;">
-        <div class="modal-content" style="max-height: 98vh; overflow-y: auto; width: 320px; box-sizing: border-box; padding-bottom: 60px;">
-            <button class="modal-close" onclick="closeModal('subscriptionModal')">&times;</button>
-            <div class="modal-header">
-                <h2>Unlock Premium</h2>
-                <p id="subscriptionSubtitle">Payment is required after your 12-hour preview ends</p>
-            </div>
-            <div class="pricing-card" style="text-align: center;">
-                <div class="price" style="display: flex; align-items: baseline; justify-content: center; gap: 4px; margin: 15px 0;">
-                    <span class="currency" style="font-size: 1.5rem; font-weight: 600;">USD $</span>
-                    <span class="amount" style="font-size: 2.5rem; font-weight: 700;">1.99</span>
-                </div>
-                <ul class="features" style="text-align: left; padding-left: 20px;">
-                    <li>Lifetime access</li>
-                    <li>All mood categories</li>
-                    <li>High-quality images</li>
-                </ul>
-                <div class="payment-form" style="padding: 20px 0 30px 0; min-height: 120px; overflow: visible;">
-                    <div id="paypal-button-container"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Subscription Success Modal -->
-    <div id="successModal" class="modal" style="display: none;">
-        <div class="modal-content">
-            <div class="success-animation">
-                <svg viewBox="0 0 24 24" fill="#4CAF50"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-            </div>
-            <h2>Welcome, Premium Member!</h2>
-            <p>You now have unlimited access to all mood categories</p>
-            <button onclick="closeModal('successModal'); location.reload();" class="subscribe-btn">
-                Start Exploring
-            </button>
-        </div>
-    </div>
-    
     <!-- Subscription System Script -->
     <script>
     // Subscription system ready - show upgrade modal on paid button click
@@ -319,129 +271,23 @@
     }
 
     function isPaymentRequired() {
-        syncSubscriptionState();
-        return !subscriptionState.isSubscribed && subscriptionState.trialExpired;
+        return false;
     }
 
     function updatePaidMoodBadges() {
-        const paidButtons = document.querySelectorAll('.mood-btn[data-mood].paid-btn, .mood-btn[data-mood]:not(.feedback-btn)');
-
-        if (subscriptionState.isSubscribed) {
-            document.querySelectorAll('.paid-badge').forEach(badge => {
-                badge.textContent = '✅ Unlocked';
-                badge.style.background = 'linear-gradient(135deg, #4CAF50, #45a049)';
-            });
-            paidButtons.forEach(btn => btn.classList.remove('locked'));
-            return;
-        }
-
-        if (subscriptionState.trialExpired) {
-            document.querySelectorAll('.paid-badge').forEach(badge => {
-                badge.textContent = '🔒 Lock';
-                badge.style.background = 'linear-gradient(135deg, #667eea, #764ba2)';
-            });
-            paidButtons.forEach(btn => btn.classList.add('locked'));
-            return;
-        }
-
-        document.querySelectorAll('.paid-badge').forEach(badge => {
-            badge.textContent = '🔓 Unlock';
-            badge.style.background = 'linear-gradient(135deg, #4CAF50, #45a049)';
-        });
-        paidButtons.forEach(btn => btn.classList.remove('locked'));
-    }
-
-    function updateUpgradeCta() {
-        const labelEl = document.getElementById('upgradeButtonLabel');
-        const timerEl = document.getElementById('timerDisplay');
-        const subtitleEl = document.getElementById('subscriptionSubtitle');
-
-        if (!labelEl || !timerEl) return;
-
-        if (subscriptionState.isSubscribed) {
-            labelEl.textContent = 'Unlocked';
-            timerEl.textContent = 'Enjoy all moods';
-            if (subtitleEl) {
-                subtitleEl.textContent = 'You already have lifetime premium access';
-            }
-            return;
-        }
-
-        if (subscriptionState.trialExpired) {
-            labelEl.textContent = 'Pay $1.99 to unlock';
-            timerEl.textContent = 'Trial ended';
-            if (subtitleEl) {
-                subtitleEl.textContent = 'Your 12-hour preview has ended. Pay $1.99 to unlock premium moods.';
-            }
-            return;
-        }
-
-        labelEl.textContent = 'Premium unlocked preview';
-        if (subtitleEl) {
-            subtitleEl.textContent = 'Premium moods are open during your 12-hour preview. After the countdown ends, payment is required to unlock them again.';
-        }
-    }
-
-    function openUpgradeModal() {
-        syncSubscriptionState();
-        updateUpgradeCta();
-        document.getElementById('subscriptionModal').style.display = 'flex';
-        document.getElementById('subscriptionModal').classList.add('active');
-        // Initialize PayPal button when modal opens
-        if (typeof paypal !== 'undefined') {
-            initPayPalButton();
-        }
-    }
-
-    function closeModal(modalId) {
-        const modal = document.getElementById(modalId);
-        modal.classList.remove('active');
-        modal.style.display = 'none';
-    }
-
-    function unlockPremium() {
-        subscriptionState.isSubscribed = true;
-        const existingData = getStoredSubscriptionData() || {};
-        const subscriptionData = {
-            ...existingData,
-            isSubscribed: true,
-            subscriptionEndDate: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString()
-        };
-        localStorage.setItem('moodGallerySubscription', JSON.stringify(subscriptionData));
-        console.log('Saved subscription:', subscriptionData);
-        closeModal('subscriptionModal');
-        document.getElementById('successModal').style.display = 'flex';
-        document.getElementById('successModal').classList.add('active');
-        document.getElementById('upgradeFloatBtn').style.display = 'none';
-        
-        // Remove locked class from all mood buttons
-        document.querySelectorAll('.mood-btn.locked').forEach(btn => {
-            btn.classList.remove('locked');
-        });
-        document.querySelectorAll('.premium-badge').forEach(badge => {
-            badge.style.display = 'none';
-        });
-        // Change paid badges from "🔒 Lock" to "✅ Unlocked"
         document.querySelectorAll('.paid-badge').forEach(badge => {
             badge.textContent = '✅ Unlocked';
             badge.style.background = 'linear-gradient(135deg, #4CAF50, #45a049)';
         });
-        // Remove lock icon from paid-btn
-        document.querySelectorAll('.mood-btn.paid-btn').forEach(btn => {
+
+        document.querySelectorAll('.mood-btn[data-mood]').forEach(btn => {
+            btn.classList.remove('locked');
             btn.classList.remove('paid-btn');
         });
     }
 
-    // Check if subscribed and unlock, or show payment
     function checkAndUnlock(btn, targetUrl) {
-        const badgeText = btn?.querySelector('.paid-badge')?.textContent?.trim() || '';
-
-        if (badgeText.includes('Unlock') || !isPaymentRequired()) {
-            triggerFullscreenAndNavigate(targetUrl);
-            return;
-        }
-
-        openUpgradeModal();
+        triggerFullscreenAndNavigate(targetUrl);
     }
     
     // Trigger fullscreen then navigate
@@ -467,171 +313,9 @@
         goFullscreen();
     }
 
-    // Update timer display
-    function updateTimerDisplay() {
-        const totalSeconds = Math.max(0, subscriptionState.timeRemaining);
-        const hours = Math.floor(totalSeconds / 3600);
-        const minutes = Math.floor((totalSeconds % 3600) / 60);
-        const seconds = totalSeconds % 60;
-        
-        const display = [hours, minutes, seconds]
-            .map(value => String(value).padStart(2, '0'))
-            .join(':');
-        
-        const timerEl = document.getElementById('timerDisplay');
-        if (timerEl) {
-            timerEl.textContent = subscriptionState.trialExpired ? 'Trial ended' : display;
-        }
-
-        updateUpgradeCta();
-        updatePaidMoodBadges();
-    }
-
-    // Save state
-    function saveState() {
-        const existingData = getStoredSubscriptionData() || {};
-        localStorage.setItem('moodGallerySubscription', JSON.stringify({
-            ...existingData,
-            isSubscribed: subscriptionState.isSubscribed,
-            timeRemaining: subscriptionState.timeRemaining,
-            trialStartedAt: subscriptionState.trialStartedAt,
-            trialEndsAt: subscriptionState.trialEndsAt,
-            subscriptionEndDate: subscriptionState.isSubscribed ? 
-                new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString() : existingData.subscriptionEndDate || null
-        }));
-    }
-
-    // Start countdown timer
-    function startTimer() {
-        syncSubscriptionState();
-        updateTimerDisplay();
-
-        const timerInterval = setInterval(() => {
-            syncSubscriptionState();
-
-            if (subscriptionState.isSubscribed) {
-                clearInterval(timerInterval);
-                updateTimerDisplay();
-                return;
-            }
-            
-            updateTimerDisplay();
-            saveState();
-            
-            if (subscriptionState.trialExpired) {
-                clearInterval(timerInterval);
-            }
-        }, 1000);
-    }
-
-    // Initialize PayPal button
-    function initPayPalButton() {
-        const container = document.getElementById('paypal-button-container');
-        if (!container || container.hasAttribute('data-initialized')) return;
-        
-        container.setAttribute('data-initialized', 'true');
-        
-        if (typeof paypal !== 'undefined') {
-            try {
-                const buttons = paypal.Buttons({
-                    style: {
-                        layout: 'vertical',
-                        color: 'gold',
-                        shape: 'rect',
-                        label: 'paypal',
-                        tagline: false,
-                        height: 45
-                    },
-                    createOrder: function(data, actions) {
-                        console.log('Creating order...');
-                        return actions.order.create({
-                            purchase_units: [{
-                                description: 'Mood Gallery Premium',
-                                amount: {
-                                    currency_code: 'USD',
-                                    value: '1.99'
-                                }
-                            }]
-                        });
-                    },
-                    onApprove: function(data, actions) {
-                        console.log('Order approved:', data.orderID);
-                        console.log('Capturing payment...');
-                        return actions.order.capture().then(function(details) {
-                            console.log('Payment completed successfully!', details);
-                            console.log('Payer:', details.payer ? details.payer.name : 'N/A');
-                            
-                            // Save subscription
-                            const existingData = getStoredSubscriptionData() || {};
-                            const subscriptionData = {
-                                ...existingData,
-                                isSubscribed: true,
-                                subscriptionEndDate: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString()
-                            };
-                            localStorage.setItem('moodGallerySubscription', JSON.stringify(subscriptionData));
-                            console.log('Saved subscription:', subscriptionData);
-                            
-                            // Unlock premium
-                            unlockPremium();
-                            
-                            // Show success
-                            sessionStorage.setItem('justPaid', '1');
-                            
-                            alert('支付成功！感谢您的购买。');
-                        });
-                    },
-                    onCancel: function(data) {
-                        console.log('Payment cancelled');
-                    },
-                    onError: function(err) {
-                        console.error('PayPal error:', err);
-                        alert('支付出错，请稍后重试。');
-                    }
-                });
-                
-                buttons.render('#paypal-button-container');
-                console.log('PayPal button rendered');
-            } catch(e) {
-                console.error('PayPal render error:', e);
-            }
-            
-            // Hide PayPal tagline elements
-            setTimeout(() => {
-                const paymentForm = document.querySelector('.payment-form');
-                if (paymentForm) {
-                    Array.from(paymentForm.children).forEach(child => {
-                        if (child.id !== 'paypal-button-container') {
-                            child.style.display = 'none';
-                        }
-                    });
-                }
-            }, 100);
-        } else {
-            console.error('PayPal SDK not loaded');
-        }
-    }
-
     document.addEventListener('DOMContentLoaded', () => {
         console.log('=== index.html DOMContentLoaded ===');
-        
-        const { isSubscribed } = syncSubscriptionState();
-        updateTimerDisplay();
-
-        // If subscribed, hide upgrade button and show unlocked state
-        if (isSubscribed) {
-            const upgradeBtn = document.getElementById('upgradeFloatBtn');
-            if (upgradeBtn) upgradeBtn.style.display = 'none';
-            document.querySelectorAll('.premium-badge').forEach(badge => badge.style.display = 'none');
-            document.querySelectorAll('.mood-btn.paid-btn').forEach(btn => {
-                btn.classList.remove('paid-btn');
-                btn.classList.remove('locked');
-            });
-        }
-
-        // Initialize PayPal button if SDK is ready
-        if (typeof paypal !== 'undefined') {
-            initPayPalButton();
-        }
+        updatePaidMoodBadges();
 
         // Close modal on backdrop click
         document.querySelectorAll('.modal').forEach(modal => {
@@ -642,17 +326,8 @@
             });
         });
 
-        // Locked mood button click handler — delegate to document so dynamic .locked buttons also trigger
-        document.addEventListener('click', (e) => {
-            const lockedBtn = e.target.closest('.mood-btn.locked');
-            if (lockedBtn) {
-                e.preventDefault();
-                openUpgradeModal();
-            }
-        });
-
         // Free mood buttons - force direct navigation
-        document.querySelectorAll('.mood-btn:not(.paid-btn):not(.feedback-btn)').forEach(btn => {
+        document.querySelectorAll('.mood-btn:not(.feedback-btn)').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 const href = btn.getAttribute('href');
                 if (href) {
@@ -661,29 +336,10 @@
                 }
             });
         });
-
-        // Paid mood buttons - unlock badges navigate, locked badges open payment
-        document.querySelectorAll('.mood-btn.paid-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.preventDefault();
-                const href = btn.getAttribute('href');
-                if (href) {
-                    checkAndUnlock(btn, href);
-                }
-            });
-        });
-
-        // Start the countdown timer
-        startTimer();
     });
     
     // Fullscreen Mood Viewer
     function startFullscreenMood(mood, query, musicFolder) {
-        if (isPaymentRequired()) {
-            openUpgradeModal();
-            return;
-        }
-        
         createFullscreenViewer(mood, query, musicFolder);
     }
     
