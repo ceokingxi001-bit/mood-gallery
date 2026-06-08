@@ -215,6 +215,8 @@ let isMusicPlaying = false;
 let currentMusicIndex = 0;
 let isFetchingMore = false;
 let activeMood = '';
+let musicReady = false;
+let pendingAutoplayAfterGesture = false;
 
 // ==================== Performance Optimizations ====================
 
@@ -514,10 +516,26 @@ function setupEventListeners() {
     document.getElementById('downloadBtn').addEventListener('click', downloadCurrentImage);
     
     const musicBtn = document.getElementById('musicBtn');
-    if (musicBtn) musicBtn.addEventListener('click', toggleMusic);
+    if (musicBtn) {
+        musicBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            toggleMusic();
+        });
+    }
     
     const volumeSlider = document.getElementById('volumeSlider');
-    if (volumeSlider) volumeSlider.addEventListener('input', handleVolume);
+    if (volumeSlider) {
+        volumeSlider.addEventListener('input', handleVolume);
+        volumeSlider.addEventListener('pointerdown', (e) => e.stopPropagation());
+        volumeSlider.addEventListener('touchstart', (e) => e.stopPropagation(), { passive: true });
+        volumeSlider.addEventListener('click', (e) => e.stopPropagation());
+    }
+
+    const unlockAudio = () => unlockAudioOnFirstGesture();
+    document.addEventListener('touchstart', unlockAudio, { passive: true });
+    document.addEventListener('pointerdown', unlockAudio, { passive: true });
+    document.addEventListener('click', unlockAudio, { passive: true });
     
     // Click anywhere on carousel to enter fullscreen (except buttons)
     const carousel = document.getElementById('fullscreenCarousel');
@@ -975,44 +993,111 @@ function setupMusic(config) {
     const audio = document.getElementById('bgAudio');
     const control = document.getElementById('musicControl');
     const mood = document.body.dataset.mood || '';
-    
-    // Online music
+
+    if (!audio) return;
+
+    audio.volume = 0.5;
+    musicReady = false;
+    pendingAutoplayAfterGesture = false;
+
+    const showControl = () => {
+        if (control) control.style.display = 'flex';
+    };
+
+    const syncMusicState = () => {
+        isMusicPlaying = !audio.paused && !audio.ended;
+    };
+
+    const attemptPlay = () => {
+        const playPromise = audio.play();
+        if (playPromise && typeof playPromise.then === 'function') {
+            playPromise.then(() => {
+                pendingAutoplayAfterGesture = false;
+                syncMusicState();
+            }).catch(() => {
+                pendingAutoplayAfterGesture = true;
+                syncMusicState();
+            });
+        } else {
+            pendingAutoplayAfterGesture = false;
+            syncMusicState();
+        }
+    };
+
+    audio.onplay = syncMusicState;
+    audio.onpause = syncMusicState;
+    audio.onended = null;
+
     if (window.musicConfig && window.musicConfig[mood]) {
         audio.src = window.musicConfig[mood];
-        if (control) control.style.display = 'flex';
-        audio.play().catch(() => {});
-        isMusicPlaying = true;
-    }
-    // Local music playlist
-    else if (config.hasMusic && window.localMusicPlaylist && window.localMusicPlaylist.length > 0) {
+        musicReady = true;
+        showControl();
+        attemptPlay();
+    } else if (config.hasMusic && window.localMusicPlaylist && window.localMusicPlaylist.length > 0) {
         currentMusicIndex = 0;
         audio.src = window.localMusicPlaylist[0];
-        if (control) control.style.display = 'flex';
-        
+        musicReady = true;
+        showControl();
+
         audio.onended = () => {
             currentMusicIndex = (currentMusicIndex + 1) % window.localMusicPlaylist.length;
             audio.src = window.localMusicPlaylist[currentMusicIndex];
-            audio.play();
+            attemptPlay();
         };
-        
-        audio.play().catch(() => {});
-        isMusicPlaying = true;
+
+        attemptPlay();
     }
 }
 
 function toggleMusic() {
     const audio = document.getElementById('bgAudio');
-    if (isMusicPlaying) {
+    if (!audio || !musicReady) return;
+
+    if (!audio.paused && !audio.ended) {
         audio.pause();
-        isMusicPlaying = false;
+        return;
+    }
+
+    const playPromise = audio.play();
+    if (playPromise && typeof playPromise.then === 'function') {
+        playPromise.then(() => {
+            pendingAutoplayAfterGesture = false;
+            isMusicPlaying = true;
+        }).catch((error) => {
+            pendingAutoplayAfterGesture = true;
+            isMusicPlaying = false;
+            console.warn('Audio play was blocked until user gesture:', error);
+        });
     } else {
-        audio.play().catch(() => {});
+        pendingAutoplayAfterGesture = false;
         isMusicPlaying = true;
     }
 }
 
 function handleVolume(e) {
-    document.getElementById('bgAudio').volume = e.target.value / 100;
+    const audio = document.getElementById('bgAudio');
+    if (!audio) return;
+    audio.volume = e.target.value / 100;
+}
+
+function unlockAudioOnFirstGesture() {
+    if (!pendingAutoplayAfterGesture) return;
+
+    const audio = document.getElementById('bgAudio');
+    if (!audio || !musicReady) return;
+
+    const playPromise = audio.play();
+    if (playPromise && typeof playPromise.then === 'function') {
+        playPromise.then(() => {
+            pendingAutoplayAfterGesture = false;
+            isMusicPlaying = true;
+        }).catch(() => {
+            isMusicPlaying = false;
+        });
+    } else {
+        pendingAutoplayAfterGesture = false;
+        isMusicPlaying = true;
+    }
 }
 
 // ==================== Download Image ====================
